@@ -1,0 +1,107 @@
+According to the ACFE’s 2018 Report to the Nations, the median cost of occupational fraud is $130,000 per instance and the median duration is 16 months; however, some fraud incidents are staggeringly more costly and last many years. The scale and impact of these frauds capture the attention of people around the world — even leading to massive regulatory overhauls or perpetrators becoming ingrained in pop culture.
+
+As the world's largest anti-fraud organization and premier provider of anti-fraud training and education, the ACFE believes that large, noteworthy fraud cases like Enron or Bernie Madoff will live on in infamy and provide valuable lessons for fraud fighters and the general public. That is why we, along with input from our members, have selected the following five stories as the most noteworthy frauds of 2018. The stories were chosen based on the amount of money lost, the number of lives impacted and/or the relevance to the anti-fraud profession.
+Theranos Hero
+MARCH 2018
+The SEC charges Theranos Inc., and its Founder and CEO Elizabeth Holmes, with fraud
+Money lost: $1 billion
+Duration of fraud: Estimated 8 years
+After a meteoric rise in fame, one of Silicon Valley’s darlings fell hard and fast. By the mid-2010s, Elizabeth Holmes was a familiar face on magazine covers and TV screens. She was often hailed as a visionary for founding her blood-testing company, Theranos Inc. In October 2015, Inc. magazine called Holmes “the next Steve Jobs” on its cover and T MAGAZINE, The New York Times style publication, wrote, “It’s hard to overestimate the potential benefit of what Elizabeth Holmes has developed with her tech company Theranos.”
+
+The rise and fall of Theranos
+
+2003: Elizabeth Holmes drops out of college to start Theranos.
+
+July 2010: Theranos tells the SEC it has raised $45 million.
+
+2014: Holmes is profiled in major media as a visionary. Investors value the company at more than $9 billion.
+
+April 2014: Whistleblower Tyler Shultz emails Holmes to complain that Theranos had doctored research.
+
+July 2015: FDA approves Theranos' test to detect if someone has been infected with herpes simplex virus 1.
+
+October 2015: The Wall Street Journal publishes an article questioning Theranos' technology.
+
+March 2016: Federal regulators say Theranos is plagues by quality-control problems.
+
+July 2016: Federal regulators sanction Theranos and ban Holmes from owning, operating or directing a medical lab for two years.
+
+October 2016: Theranos closes clinical labs and wellness centers, and lays off 40 percent of its employees.
+
+January 2017: Theranos closes its last blood-testing location as WSJ reports it failed a second lab inspection.
+
+March 2018: The SEC charges Holmes and Theranos' former president with fraud.
+
+June 2018: Holmes steps down as Theranos CEO.
+
+September 2018: Theranos announces to shareholders that the company will cease operations and formally dissolve.
+
+However, around the same time, cracks began to appear in the façade of the seemingly miracle company. Before the adoring profiles began in earnest, Theranos employee Tyler Shultz emailed Holmes in 2014 to allege that Theranos had doctored research and had quality-control issues. Shultz blew the whistle to a state regulator who quietly started investigating his, and other employees’, claims. Starting in March 2016, when federal regulators said Theranos was plagued by quality -control problems, the company, and Holmes’ reputation, went into a freefall.
+
+After failing multiple lab inspections and laying off the majority of its employees, the fortunes of Holmes and Theranos continued to decline when, in March 2018, the U.S. Securities and Exchange Commission (SEC) announced that Theranos, Holmes and former CEO and President Ramesh “Sunny” Balwani had been charged with a massive civil securities fraud. The charges alleged that Holmes and Balwani made numerous false and misleading statements while raising more than $700 million from private investors.
+
+In June, a federal grand jury indicted Holmes and Balwani on charges of wire fraud and conspiracy to commit wire fraud for their roles in separate schemes: one to defraud investors and one to defraud doctors and patients. In September, Theranos shut down for good after reaching an agreement to hand over its patents to its most important creditor, Fortress Investment Group. It is estimated that investors lost nearly $1 billion.
+
+Danske Hero
+SEPTEMBER 2018
+Danske Bank CEO resigns over $234 billion money laundering scandal
+Money lost: $234 billion
+Duration of fraud: Estimated 8 years
+Founded in 1871 in Denmark, Danske Bank has been a blue-chip name in European banking for more than a century. However, that pristine reputation became tarnished in late 2018 after reports that an Estonian branch of the bank allegedly participated in money laundering activities. The Estonian branch in question was acquired by Danske in 2006 when Danske bought Finnish Sampo Bank. At the time of the purchase, The Financial Times highlighted Sampo Bank’s properties in other countries as a huge boon for Danske, saying, “The deal gives Danske control of Finland’s third largest bank, but crucially includes Sampo’s existing operations in the high growth areas of Lithuania, Latvia, Estonia and Russia.”
+
+Russia and the Baltic countries may have been high-growth areas, but The Wall Street Journal reports that even before the 2006 deal, Russian Central Bank Deputy Chairman Andrei Kozlov warned Estonian officials that the branch “was servicing customers suspected of financial wrongdoing such as tax evasion or corruption.” They also reported that in 2010, Peter Straarup, Danske’s CEO at the time, was worried about how much money was flowing through this small branch — especially when a great deal of that money was from nonresident clients. He was reassured all was well by Thomas Borgen, the head of international banking for Danske from 2009–2012. Borgen went on to become the CEO of Danske in 2013.
+
+In September 2018, after pressure from authorities in Denmark and Estonia, Danske published a report confirming that, “its headquarters and its Estonian branch failed for years to prevent suspected money laundering involving thousands of customers,” reported The New York Times. The bank said it was unable to estimate an exact figure for the total value of suspicious transactions identified, but it revealed that its Estonian branch had improbably large flows of approximately $234 billion. The transactions involved more than 6,000 customers from 2007 to 2015 and indicated serious compliance and control failings. The Guardian reported on the wide scope of countries involved, stating, “The Danske scandal involves 32 currencies, companies from Cyprus, the British Virgin Islands and the Seychelles. Customers of the Estonian branch have been traced to Russia, Azerbaijan and Ukraine.”
+
+As a result of the scandal coming to light, Borgen resigned. He said in a statement, “It is clear that Danske Bank has failed to live up to its responsibility in the case of possible money laundering in Estonia. I deeply regret this. Even though the investigation conducted by the external law firm concludes that I have lived up to my legal obligations, I believe that it is best for all parties that I resign.”
+
+Health Care Hero
+JUNE 2018
+Largest health care fraud takedown in U.S.
+Money lost: $2 billion
+Duration of fraud: Varied
+U.S. law enforcement dealt a heavy blow to fraudsters in June when U.S. Department of Justice (DOJ) officials announced the largest-ever nationwide health care fraud takedown. The enforcement action resulted in charges against 601 defendants relating to more than $2 billion in fraud losses, including 84 cases involving the illegal prescription or distribution of opioids. The case spanned 58 federal districts, and the targets included charges against 165 medical professionals.
+
+
+Reuters reported that “those charged included a Florida anesthesiologist accused of running a ‘pill mill;’ a Pennsylvania doctor alleged to have billed an insurer for illegally prescribed opioids; and a Texas pharmacy chain owner and two other people accused of improperly filling orders for opioids that were sold to drug couriers.” The schemes targeted in the takedown defrauded Medicare, Medicaid, TRICARE and private companies. Many involved fraudulent billings for medically unnecessary prescription drugs and compounded medications that were never distributed, as well as the payment of kickbacks to patient recruiters, beneficiaries and other co-conspirators for providing beneficiary information to providers for use in such false billings.
+
+More than 1,000 law enforcement personnel took part in the operation, including more than 350 Office of the Inspector General special agents. The DOJ stated, “These takedowns send a strong message that theft from federal health care programs will not be tolerated. The money taxpayers spend fighting fraud is an excellent investment: For every $1 spent on health care related fraud and abuse investigations, more than $4 is recovered.”
+
+PNB Hero
+FEBRUARY 2018
+$2 billion fraud discovered at Punjab National Bank
+Money lost: Nearly $2 billion
+Duration of fraud: Estimated 7 years
+Nirav Modi was sometimes referred to as “jeweler to the stars,” with his pieces worn by Priyanka Chopra, Naomi Watts and Kate Winslet. Modi’s seemingly charmed life came to a crashing halt early in the year when the second-largest state-run Indian bank, Punjab National Bank (PNB), filed a police complaint against Modi, another jeweler Mehul Choksi and others, alleging the men had conspired with two of its staff to defraud the bank of nearly $43 million.
+
+After the Central Bureau of Investigation (CBI) launched an investigation in February, PNB revealed the total amount involved in the fraud was closer to $2 billion. As the probe continued, regulators discovered that Modi conspired with bank employees to fraudulently obtain Letters of Undertaking (LoUs) from PNB. Letters of Undertaking act as a guarantee by the issuing bank, similar to Letters of Credit, and are often used in international banking transactions. The LoUs in question were issued from PNB via the Society for Worldwide Interbank Financial Telecommunication (SWIFT) network and were issued without proper authorization. They also were not recorded in PNB’s record-keeping system, allowing Modi and Choksi to avoid detection while obtaining loans in other countries.
+
+Modi fled India before the scandal broke. As a result of the fraud, the Reserve Bank of India (RBI) discontinued the acceptance and issuance of LoUs. The RBI also ordered the Indian financial institutions to integrate the SWIFT network with their central information systems. As of print, Modi is still considered a fugitive.
+
+1MDB Hero
+JULY AND SEPTEMBER 2018
+Former Malaysian prime minister at center of 1MDB scandal arrested
+Money lost: $681 million
+Duration of fraud: 5 years
+After years of reports about the Malaysian government being involved in a multibillion-dollar embezzlement scandal involving the 1MDB fund, the incumbent prime minister Najib Razak was ousted in a May election. The defeat was stunning, as it marked the first time Najib’s political party, Barisan Nasional, would not be in power after holding control since Malaysia won its independence from Britain in 1957.
+
+
+In July, authorities arrested and charged him with corruption and criminal breach of trust in connection to 1MDB. He pleaded not guilty and was released on bail. Bloomberg reported that he faces “three counts of criminal breach of trust, and one charge under the anti-corruption act. If found guilty, he could be jailed for up to 20 years and fined. The ex-prime minister is seeking a trial for all charges.”
+
+Legal woes continued for Najib when he was charged in August with three counts of money laundering. He was arrested again in September and charged with more crimes connected to $681 million deposited into his account in 2013. His trials are scheduled to begin in February.
+
+Dishonorable mentions
+It is impossible to highlight every large fraud case due to the sheer number of frauds that are discovered or prosecuted each year. While they weren’t selected as part of our top 5, here are a few additional stories from 2018 that did not make our list but are still notable due to the size of the fraud, callousness of the fraudsters in question or the political repercussions.
+
+Doctor accused of fraud and misdiagnosing patients to fund 'opulent lifestyle'
+
+In May, authorities indicted Dr. Jorge Zamora-Quezada, who operated several clinics in Texas, in connection with more than $240 million in health care claims that were based in part on “fraudulent statements” and resulted in $50 million paid to the doctor. According to the U.S. Department of Justice, Zamora-Quezada falsely diagnosed patients — including children, the elderly, and those with disabilities — with serious and even terminal illnesses in order to prescribe expensive treatments and medication, including chemotherapy in some cases. The scheme allegedly allowed the doctor to live a lavish lifestyle, complete with his own personal jet, a fleet of luxury cars and numerous expensive commercial and residential properties in Mexico and the U.S.
+
+Politically-tied Michael Cohen and Paul Manafort pleaded guilty to charges related to fraud
+
+In August, U.S. President Donald Trump’s former personal lawyer, Michael Cohen, pleaded guilty to fraud charges, including tax fraud, bank fraud and making an excessive campaign contribution; his plea also apparently implicated President Trump in directing the campaign contributions for which he was on trial. Manafort was found guilty on eight of 18 fraud charges he faced, including tax fraud and bank fraud, but the jury could not reach a unanimous decision on the other 10 charges. In a separate trial in September, Manafort reached a deal with prosecutors that included pleading guilty to conspiracy against the U.S. and full cooperation with a special counsel investigation into the 2016 presidential election, rather than go to trial on additional fraud charges.
+
+Former South African President Jacob Zuma's corruption and fraud charges
+
+Corruption scandals led South African President Jacob Zuma to choose resignation in February at the insistence of his own political party, who told him to step down or rather than face a no-confidence vote that would have likely removed him from office. Following a tenure filled with corruption allegations, he faces 16 charges, including money laundering, racketeering, fraud and corruption in an ongoing trial. His next court appearance is scheduled for November.
+

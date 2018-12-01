@@ -5,22 +5,28 @@
 # @author: amal
 # """
 
-# import nltk
-
-# nltk.download('wordnet')
-
-# from nltk.stem import WordNetLemmatizer
-
-# def wordLemmatizer(wordList):
-#     lemmatizer=WordNetLemmatizer()
-#     return [lemmatizer.lemmatize(word) for word in wordList] 
-#     
-
 import nltk
+from nltk.corpus import wordnet
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
+
 from nltk.stem import WordNetLemmatizer
-wordnet_lemmatizer = WordNetLemmatizer()
+
+def get_wordnet_pos(word):
+    """Map POS tag to first character lemmatize() accepts"""
+    tag = nltk.pos_tag([word])[0][1][0].upper()
+    print(nltk.pos_tag([word]))
+    print(tag)
+    tag_dict = {"J": wordnet.ADJ,
+                "N": wordnet.NOUN,
+                "V": wordnet.VERB,
+                "R": wordnet.ADV}
+
+    return tag_dict.get(tag, wordnet.NOUN)
 
 def wordLemmatizer(wordList):
-	nltk_tokens = wordList
-	for w in nltk_tokens:
-		print("Actual: ",w,"  Lemma: ",wordnet_lemmatizer.lemmatize(w))
+    lemmatizer=WordNetLemmatizer()
+    lemmatized_output = ' '.join(lemmatizer.lemmatize(word, get_wordnet_pos(word)) for word in wordList)
+    print(lemmatized_output)
+    return lemmatized_output
+    

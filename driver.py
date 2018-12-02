@@ -9,6 +9,7 @@ import codecs
 from tokenizer import wordTokenizer,sentenceTokenizer
 from lemmatizer import wordLemmatizer
 from posTagger import wordPosTagger
+from dependencyParser import dependencyParse
 
 filePointer=codecs.open("a.txt",'r',encoding='utf-8')
 text=filePointer.read()
@@ -24,3 +25,5 @@ print("lemmatizedWords************",lemmatizedWords)
 
 posTaggedwords = wordPosTagger(text)
 print("pos tagged*********",posTaggedwords)
+
+dependencyParse(text)

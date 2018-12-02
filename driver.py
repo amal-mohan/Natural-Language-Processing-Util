@@ -8,9 +8,9 @@ Created on Sat Dec 01 13:07:20 2018
 import codecs
 from tokenizer import wordTokenizer,sentenceTokenizer
 from lemmatizer import wordLemmatizer
+from posTagger import wordPosTagger
 
 filePointer=codecs.open("a.txt",'r',encoding='utf-8')
-
 text=filePointer.read()
 
 print(text)
@@ -19,6 +19,8 @@ print("tokenizedWords: **************\n",tokenizedWords)
 tokenziedSentence=sentenceTokenizer(text)
 print("tokenizedsentence: **************\n",tokenziedSentence)
 
-
 lemmatizedWords=wordLemmatizer(tokenizedWords)
 print("lemmatizedWords************",lemmatizedWords)
+
+posTaggedwords = wordPosTagger(text)
+print("pos tagged*********",posTaggedwords)

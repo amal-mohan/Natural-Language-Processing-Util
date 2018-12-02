@@ -8,11 +8,8 @@ tokenizer for text(tokenizes text to sentence and words)
 """
 
 import nltk
-
 nltk.download('punkt')
-
 from nltk.tokenize import sent_tokenize,word_tokenize
-
 
 def wordTokenizer(text):
     tokenizedWords=word_tokenize(text)

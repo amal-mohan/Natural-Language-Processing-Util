@@ -1,7 +1,7 @@
 from nltk.corpus import wordnet as wn
 
 def extractRelations(wordList):
-	for word in wordList:
+	for word in set(wordList):
 		print("Word: ",word)
 		synsets = wn.synsets(word)
 		for synset in synsets:

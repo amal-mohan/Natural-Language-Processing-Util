@@ -27,6 +27,6 @@ print("\n\nLemmatized Words: \n",lemmatizedWords)
 posTaggedwords = wordPosTagger(text)
 print("\n\nPOS Tagged Words: \n",posTaggedwords)
 
-dependencyParse(text)
+#dependencyParse(text)
 
-extractRelations(tokenizedWords)
+#extractRelations(tokenizedWords)

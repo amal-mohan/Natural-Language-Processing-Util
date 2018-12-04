@@ -5,7 +5,7 @@ def extractRelations(wordList):
 		print("Word: ",word)
 		synsets = wn.synsets(word)
 		for synset in synsets:
-			print("\tLemma: {}".format(synset.name()))
+			print("\tSynset: {}".format(synset.name()))
 			print("\tDefinition: {}".format(synset.definition()))
 			print("\tExample: {}".format(synset.examples()))
 			hyponym = wn.synset(synset.name()).hyponyms()

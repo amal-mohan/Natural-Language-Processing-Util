@@ -92,6 +92,12 @@ def fillFullTemplate(filledKillTemplatesList):
 		print(template.templateName)
 		print(template.sentence)
 		print(template.filledTemplate)
+        parser = stanford.StanfordParser()
+        tree_parse = parser.raw_parse(sentence)
+        for i, sub_tree in enumerate(tree_parse[0].subtrees()):
+            if sub_tree.label() in ["S"]:
+                sub_list = sub_tree
+                print(sub_list)
 
 def getSentence():
 	filledKillTemplatesList = []

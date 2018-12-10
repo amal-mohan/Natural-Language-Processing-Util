@@ -6,7 +6,7 @@ Created on Mon Dec  3 18:54:22 2018
 """
 
 import os
-
+import codecs
 from posTagger import wordPosTagger
 from lemmatizer import verbLemmatizer,wordLemmatizer
 #from operator import itemgetter
@@ -18,7 +18,8 @@ def verbScoreCalculate():
     allVerbsCorpus=set()
     for filename in os.listdir(os.getcwd()+"\\corpus"):
         if '.txt' in filename:
-            with open("corpus\\"+filename, 'r') as f:
+            with codecs.open("corpus\\"+filename,'r',encoding='utf-8',errors="ignore") as f:
+       #         filePointer=codecs.open("corpus\\"+filename,'r',encoding='utf-8',errors="ignore")
                 text=f.read()
                 posTaggedwords = wordPosTagger(text)
                 allVerbsTag=set(filter(lambda y: "VBG" in  y or "VB" in  y or "VBD" in  y or "VBN" in  y or "VBP" in  y or "VBZ" in  y,posTaggedwords))
@@ -40,9 +41,11 @@ def verbScoreCalculate():
     c=0
     for filename in os.listdir(os.getcwd()+"\\corpus"):
         if '.txt' in filename:
-            with open("corpus\\"+filename, 'r') as f:
+            print(filename)
+            with open("corpus\\"+filename, 'r',encoding='utf-8', errors='ignore') as f:
                 text=f.read()
                 sentences=sentenceTokenizer(text)
+                print(sentences)
                 for sentence in sentences:
                     posTaggedwords = wordPosTagger(sentence)
                     allVerbsTag=set(filter(lambda y: "VBG" in  y or "VB" in  y or "VBD" in  y or "VBN" in  y or "VBP" in  y or "VBZ" in  y,posTaggedwords))
@@ -58,9 +61,11 @@ def verbScoreCalculate():
             
                 
     for v,k in verbTuple:
-        if(i==50):
-            break
-        with open("verbs\\"+str(v)+k+".txt","w") as fp:
+        #if(i==50):
+         #   break
+        if "RFE" in k:
+            continue
+        with open("verbs\\"+str(v)+k+".txt","w",encoding='utf-8', errors='ignore') as fp:
             for sentence in sentenceMap[k]:
                 fp.write(sentence)
                 fp.write("\n\n")

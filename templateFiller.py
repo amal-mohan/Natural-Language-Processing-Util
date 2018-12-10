@@ -13,13 +13,16 @@ from nltk.corpus import wordnet as wn
 class Template:
 	templateName = ""
 	filledTemplate = {}
-	sentence = 
+	sentence = ""
 
 	def changeTemplateName(self, templateName):
 		self.templateName = templateName
 
 	def changeTemplateProperties(self,  filledTemplate):
 		self.filledTemplate = filledTemplate
+
+	def changeSentence(self, sentence):
+		self.sentence = sentence
 
 def getSynlist(relation):
 	synList = []
@@ -34,6 +37,7 @@ def fillTemplateProperties(word, sentence, intersectionSet, filledKillTemplatesL
 	if word == "kill":
 		intersectionWord = intersectionSet.pop()
 		x = Template()
+		x.changeSentence(sentence)
 		kill_templateproperties = {"victim":"","cause":"","location":"","time":""}
         
 		filledKillTemplatesList.append(kill_templateproperties)
@@ -86,8 +90,8 @@ def fillTemplateProperties(word, sentence, intersectionSet, filledKillTemplatesL
 def fillFullTemplate(filledKillTemplatesList):
 	for template in filledKillTemplatesList:
 		print(template.templateName)
+		print(template.sentence)
 		print(template.filledTemplate)
-
 
 def getSentence():
 	filledKillTemplatesList = []

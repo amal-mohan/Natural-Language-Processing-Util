@@ -1,21 +1,25 @@
 import nltk
 import os
+import spacy
+nlp = spacy.load('en')
 import codecs
 from tokenizer import wordTokenizer, sentenceTokenizer
 from lemmatizer import verbLemmatizer
 from posTagger import wordPosTagger
+from nltk.stem.wordnet import WordNetLemmatizer
 nltk.download('wordnet')
 from nltk.corpus import wordnet as wn
 
 class Template:
 	templateName = ""
-	filledTemplatesList = []
+	filledTemplate = {}
+	sentence = 
 
 	def changeTemplateName(self, templateName):
 		self.templateName = templateName
 
-	def changeTemplateProperties(self, filledTemplatresList):
-		self.filledTemplatesList = filledTemplatesList
+	def changeTemplateProperties(self,  filledTemplate):
+		self.filledTemplate = filledTemplate
 
 def getSynlist(relation):
 	synList = []
@@ -24,27 +28,78 @@ def getSynlist(relation):
 		synList.append(syn.name())
 	return synList
 
-def fillTemplateProperties(word, sentence, rules):
-	if word in "kill":
+def fillTemplateProperties(word, sentence, intersectionSet, filledKillTemplatesList):
+	dependencyDict = {}
+	cause = ""
+	if word == "kill":
+		intersectionWord = intersectionSet.pop()
+		x = Template()
 		kill_templateproperties = {"victim":"","cause":"","location":"","time":""}
-		filledKillTemplatesList.append(kill_templateproperties)
-	if word in "tell":
-		tell_templateproperties = {"speaker":"","listner":"","content":""}
-		filledTellTemplatesList.append(tell_templateproperties)
+		sent = nlp(sentence)
+		for s_word in sent.ents:
+			if s_word.label_ == "GPE":
+				kill_templateproperties["location"] = s_word
+			elif s_word.label_ == "DATE":
+				kill_templateproperties["time"] = s_word
+		doc = nlp(sentence)
+		for token in doc:
+			if token.head.text not in dependencyDict:
+				dependencyDict[token.head.text]={}
+			dependencyDict[token.head.text][token.dep_] = token.text
 
-def fillFullTemplate():
-	kill_template = Template()
-	kill_template.changeTemplateName("kill")
-	kill_template.changeTemplateProperties(filledKillTemplatesList)
-		
-	tell_template = Template()
-	tell_template.changeTemplateName("tell")
-	tell_template.changeTemplateProperties(filledTellTemplatesList)	
+			if WordNetLemmatizer().lemmatize(token.head.text ,'v') == intersectionWord:
+				
+				if "nsubj" in dependencyDict[token.head.text]:
+					# if "det" in depList:
+					# 	cause = depdict["nummod"]
+					# if "nummod" in depList:
+					# 	cause = cause+" "+depdict["nummod"]
+					# if "amod" in depList:
+					# 	cause = cause+" "+depdict["amod"]
+					cause = dependencyDict[token.head.text]["nsubj"]
+					kill_templateproperties["cause"] = cause
+					if "dobj" in dependencyDict[token.head.text]:
+						victim = dependencyDict[token.head.text]["dobj"]
+						kill_templateproperties["victim"] = victim
+
+				elif "nsubjpass" in dependencyDict[token.head.text]:
+					victim = dependencyDict[token.head.text]["nsubjpass"]
+					kill_templateproperties["victim"] = victim
+
+					if "dobj" in dependencyDict[token.head.text]:
+						cause = dependencyDict[token.head.text]["dobj"]
+						kill_templateproperties["cause"] = cause
+
+				elif "advcl" in dependencyDict[token.head.text]:
+					advClause = dependencyDict[token.head.text]["advcl"]
+
+					if "nsubj" in dependencyDict[advClause]:
+						cause = dependencyDict[advClause]["nsubj"]
+
+					if "dobj" in dependencyDict[token.head.text]:
+						victim = dependencyDict[token.head.text]["dobj"]
+						kill_templateproperties["victim"] = victim
+
+
+				# print("{0}/{1} <--{2}-- {3}/{4}".format(token.text, token.tag_, token.dep_, token.head.text, token.head.tag_))
+		x.changeTemplateName("kill")
+		x.changeTemplateProperties(kill_templateproperties)
+		filledKillTemplatesList.append(x)
+	# if word in "tell":
+	# 	tell_templateproperties = {"speaker":"","listner":"","content":""}
+	# 	filledTellTemplatesList.append(tell_templateproperties)
+
+def fillFullTemplate(filledKillTemplatesList):
+	for template in filledKillTemplatesList:
+		print(template.templateName)
+		print(template.filledTemplate)
 
 
 def getSentence():
+	filledKillTemplatesList = []
 	with codecs.open("corpus.txt", 'r', encoding='utf-8', errors='ignore') as file:
 		text = file.read()
+	# text = "The temblor that struck northern Armenia on December 7, 1988, killed more than 25,000 people, injured up to 130,000, and left hundreds of thousands homeless or without basic supplies."
 	sentences=sentenceTokenizer(text)
 	with codecs.open("selectedsentences.txt",'w',encoding='utf-8',errors='ignore') as fi:
 		for sentence in sentences:
@@ -57,13 +112,14 @@ def getSentence():
 			for word in wordRelDict:
 				intersectionSet = sentenceWordset.intersection(wordRelDict[word])
 				if len(intersectionSet) > 0:
-					print("\ntemplate : ",word," sentence: ",sentence, "intersectedSet: ",intersectionSet)
-					fi.write("\n\ntemplate : "+word+" sentence: "+sentence+ "intersectedSet: "+str(intersectionSet))
+					fillTemplateProperties(word, sentence, intersectionSet, filledKillTemplatesList)
+					# print("\ntemplate : ",word," sentence: ",sentence, "intersectedSet: ",intersectionSet)
+					# fi.write("\n\ntemplate : "+word+" sentence: "+sentence+ "intersectedSet: "+str(intersectionSet))
 	fi.close()
 	file.close()
 
-	# 			fillTemplateProperties(word, sentence, rules, intersectionSet)
-	# fillFullTemplate()
+	# 			
+	fillFullTemplate(filledKillTemplatesList)
 	
 
 def getRelatedWordList():
@@ -112,8 +168,6 @@ def getRelatedWordList():
 
 wordList=[]
 wordRelDict = {}
-filledKillTemplatesList = []
-filledTellTemplatesList = []
 getRelatedWordList()
 getSentence()
 

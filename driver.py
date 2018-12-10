@@ -12,7 +12,7 @@ from posTagger import wordPosTagger
 from dependencyParser import dependencyParse
 from relationExtractor import extractRelations
 
-filePointer=codecs.open("a.txt",'r',encoding='utf-8')
+filePointer=codecs.open("27kill.txt",'r',encoding='utf-8',errors="ignore")
 text=filePointer.read()
 
 print(text)
@@ -27,6 +27,6 @@ print("\n\nLemmatized Words: \n",lemmatizedWords)
 posTaggedwords = wordPosTagger(text)
 print("\n\nPOS Tagged Words: \n",posTaggedwords)
 
-#dependencyParse(text)
+dependencyParse(text)
 
 #extractRelations(tokenizedWords)

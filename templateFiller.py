@@ -35,17 +35,11 @@ def fillTemplateProperties(word, sentence, intersectionSet, filledKillTemplatesL
 		intersectionWord = intersectionSet.pop()
 		x = Template()
 		kill_templateproperties = {"victim":"","cause":"","location":"","time":""}
-		sent = nlp(sentence)
-		for s_word in sent.ents:
-			if s_word.label_ == "GPE":
-				kill_templateproperties["location"] = s_word
-			elif s_word.label_ == "DATE":
-				kill_templateproperties["time"] = s_word
-		doc = nlp(sentence)
-		for token in doc:
-			if token.head.text not in dependencyDict:
-				dependencyDict[token.head.text]={}
-			dependencyDict[token.head.text][token.dep_] = token.text
+        
+		filledKillTemplatesList.append(kill_templateproperties)
+	if word in "tell":
+		tell_templateproperties = {"speaker":"","listner":"","content":""}
+		filledTellTemplatesList.append(tell_templateproperties)
 
 			if WordNetLemmatizer().lemmatize(token.head.text ,'v') == intersectionWord:
 				
@@ -112,9 +106,8 @@ def getSentence():
 			for word in wordRelDict:
 				intersectionSet = sentenceWordset.intersection(wordRelDict[word])
 				if len(intersectionSet) > 0:
-					fillTemplateProperties(word, sentence, intersectionSet, filledKillTemplatesList)
-					# print("\ntemplate : ",word," sentence: ",sentence, "intersectedSet: ",intersectionSet)
-					# fi.write("\n\ntemplate : "+word+" sentence: "+sentence+ "intersectedSet: "+str(intersectionSet))
+                    fillTemplateProperties(word, sentence, rules, intersectionSet)					print("\ntemplate : ",word," sentence: ",sentence, "intersectedSet: ",intersectionSet)
+					fi.write("\n\ntemplate : "+word+" sentence: "+sentence+ "intersectedSet: "+str(intersectionSet))
 	fi.close()
 	file.close()
 

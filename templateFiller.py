@@ -31,100 +31,176 @@ def getSynlist(relation):
 		synList.append(syn.name())
 	return synList
 
-def fillTemplateProperties(word, sentence, intersectionSet, filledKillTemplatesList):
+def getDepChildren(dependencyDict,value):
+	deplist=[]
+	if value not in dependencyDict:
+		return deplist
+	for depkey in dependencyDict[value]:
+		deplist.append(dependencyDict[value][depkey])
+		deplist.extend(getDepChildren(dependencyDict,dependencyDict[value][depkey]))
+		
+	return deplist
+
+def calculateSubTree(dependencyDict,value):
+#	deplist=[]
+#	for depkey in dependencyDict[value]:
+#								#print(type(x))
+#		deplist.append(dependencyDict[value][depkey])
+	deplist=getDepChildren(dependencyDict,value)   
+	deplist.sort(key=lambda val: val.i)
+	s=""
+	for r in deplist:
+		s=s+" "+r.text
+	return s.strip()
+
+def fillKillTemplate(word, sentence, intersectionSet):
 	dependencyDict = {}
-	cause = ""
+	intersectionWord = intersectionSet.pop()
+	x = Template()
+	x.changeSentence(sentence)
+	kill_templateproperties = {"victim":"","cause":"","location":"","time":""}
+	sent = nlp(sentence)
+	for s_word in sent.ents:
+		if s_word.label_ == "GPE":
+			kill_templateproperties["location"] = s_word
+		elif s_word.label_ == "DATE":
+			kill_templateproperties["time"] = s_word
+	doc = nlp(sentence)
+	for token in doc:
+		if token.head not in dependencyDict:
+			dependencyDict[token.head]={}
+		dependencyDict[token.head][token.dep_] = token
+
+		if WordNetLemmatizer().lemmatize(token.head.text ,'v') == intersectionWord:
+			
+			if "nsubj" in dependencyDict[token.head]:
+				cause = dependencyDict[token.head]["nsubj"]
+				kill_templateproperties["cause"] = cause
+				if "dobj" in dependencyDict[token.head]:
+					victim = dependencyDict[token.head]["dobj"]
+					kill_templateproperties["victim"] = victim.text
+					
+					if victim in dependencyDict:
+						s=calculateSubTree(dependencyDict,victim)
+						kill_templateproperties["victim"] = s+" "+kill_templateproperties["victim"]
+#						if victim in dependencyDict and "nummod" in dependencyDict[victim]:
+#							kill_templateproperties["victim"] = dependencyDict[victim]["nummod"].text+" "+kill_templateproperties["victim"]
+
+
+			elif "nsubjpass" in dependencyDict[token.head]:
+				victim = dependencyDict[token.head]["nsubjpass"]
+				kill_templateproperties["victim"] = victim.text
+				if victim in dependencyDict:
+					s=calculateSubTree(dependencyDict,victim)
+					kill_templateproperties["victim"] = s+" "+kill_templateproperties["victim"]
+					
+				if "dobj" in dependencyDict[token.head]:
+					cause = dependencyDict[token.head]["dobj"]
+					kill_templateproperties["cause"] = cause.text
+
+			elif "advcl" in dependencyDict[token.head]:
+				advClause = dependencyDict[token.head]["advcl"]
+
+				if "nsubj" in dependencyDict[advClause]:
+					cause = dependencyDict[advClause]["nsubj"].text
+
+				if "dobj" in dependencyDict[token.head]:
+					victim = dependencyDict[token.head]["dobj"]
+					kill_templateproperties["victim"] = victim.text
+
+	x.changeTemplateName("kill")
+	x.changeTemplateProperties(kill_templateproperties)
+	filledKillTemplatesList.append(x)
+
+
+def fillTellTemplate(word, sentence, intersectionSet):
+	dependencyDict = {}
+	intersectionWord = intersectionSet.pop()
+	x = Template()
+	x.changeSentence(sentence)
+	tell_templateproperties = {"speaker":"","listner":"","time":""}
+	sent = nlp(sentence)
+	for s_word in sent.ents:
+		if s_word.label_ == "DATE":
+			tell_templateproperties["time"] = s_word
+	doc = nlp(sentence)
+	for token in doc:
+		if token.head not in dependencyDict:
+			dependencyDict[token.head]={}
+		dependencyDict[token.head][token.dep_] = token
+		if WordNetLemmatizer().lemmatize(token.head.text ,'v') == intersectionWord:
+			if "nsubj" in dependencyDict[token.head]:
+				speaker = dependencyDict[token.head]["nsubj"]
+				tell_templateproperties["speaker"] = speaker.text
+				s=calculateSubTree(dependencyDict,speaker)
+				tell_templateproperties["speaker"] = s+" "+tell_templateproperties["speaker"]
+				# if speaker in dependencyDict and "nummod" in dependencyDict[speaker]:
+				# 		tell_templateproperties["speaker"] = dependencyDict[speaker]["nummod"].text+" "+tell_templateproperties["listner"]
+				if "dobj" in dependencyDict[token.head]:
+					listner = dependencyDict[token.head]["dobj"]
+					tell_templateproperties["listner"] = listner.text
+					s=calculateSubTree(dependencyDict,listner)
+					tell_templateproperties["listner"] = s+" "+tell_templateproperties["listner"]
+					
+			elif "nsubjpass" in dependencyDict[token.head]:
+				listner = dependencyDict[token.head]["nsubjpass"]
+				tell_templateproperties["listner"] = listner
+
+				if "dobj" in dependencyDict[token.head]:
+					speaker = dependencyDict[token.head]["dobj"]
+					tell_templateproperties["speaker"] = speaker.text
+
+			elif "advcl" in dependencyDict[token.head]:
+				advClause = dependencyDict[token.head]["advcl"]
+
+				if (advClause in dependencyDict) and ("nsubj" in dependencyDict[advClause]):
+					speaker = dependencyDict[advClause]["nsubj"].text
+
+				if "dobj" in dependencyDict[token.head]:
+					listner = dependencyDict[token.head]["dobj"]
+					tell_templateproperties["listner"] = listner.text
+					s=calculateSubTree(dependencyDict,listner)
+					tell_templateproperties["listner"] = s+" "+tell_templateproperties["listner"]
+
+	x.changeTemplateName("tell")
+	x.changeTemplateProperties(tell_templateproperties)
+	filledTellTemplatesList.append(x)
+
+def fillTemplateProperties(word, sentence, intersectionSet):
 	if word == "kill":
-		intersectionWord = intersectionSet.pop()
-		x = Template()
-		x.changeSentence(sentence)
-		kill_templateproperties = {"victim":"","cause":"","location":"","time":""}
-		sent = nlp(sentence)
-		for s_word in sent.ents:
-			if s_word.label_ == "GPE":
-				kill_templateproperties["location"] = s_word
-			elif s_word.label_ == "DATE":
-				kill_templateproperties["time"] = s_word
-		doc = nlp(sentence)
-		for token in doc:
-			if token.head.text not in dependencyDict:
-				dependencyDict[token.head.text]={}
-			dependencyDict[token.head.text][token.dep_] = token.text
-
-			if WordNetLemmatizer().lemmatize(token.head.text ,'v') == intersectionWord:
-				
-				if "nsubj" in dependencyDict[token.head.text]:
-					# if "det" in depList:
-					# 	cause = depdict["nummod"]
-					# if "nummod" in depList:
-					# 	cause = cause+" "+depdict["nummod"]
-					# if "amod" in depList:
-					# 	cause = cause+" "+depdict["amod"]
-					cause = dependencyDict[token.head.text]["nsubj"]
-					kill_templateproperties["cause"] = cause
-					if "dobj" in dependencyDict[token.head.text]:
-						victim = dependencyDict[token.head.text]["dobj"]
-						kill_templateproperties["victim"] = victim
-
-				elif "nsubjpass" in dependencyDict[token.head.text]:
-					victim = dependencyDict[token.head.text]["nsubjpass"]
-					kill_templateproperties["victim"] = victim
-
-					if "dobj" in dependencyDict[token.head.text]:
-						cause = dependencyDict[token.head.text]["dobj"]
-						kill_templateproperties["cause"] = cause
-
-				elif "advcl" in dependencyDict[token.head.text]:
-					advClause = dependencyDict[token.head.text]["advcl"]
-
-					if "nsubj" in dependencyDict[advClause]:
-						cause = dependencyDict[advClause]["nsubj"]
-
-					if "dobj" in dependencyDict[token.head.text]:
-						victim = dependencyDict[token.head.text]["dobj"]
-						kill_templateproperties["victim"] = victim
+		fillKillTemplate(word, sentence, intersectionSet)
+	if word == "tell":
+		fillTellTemplate(word, sentence, intersectionSet)
 
 
-				# print("{0}/{1} <--{2}-- {3}/{4}".format(token.text, token.tag_, token.dep_, token.head.text, token.head.tag_))
-		x.changeTemplateName("kill")
-		x.changeTemplateProperties(kill_templateproperties)
-		filledKillTemplatesList.append(x)
-	# if word in "tell":
-	# 	tell_templateproperties = {"speaker":"","listner":"","content":""}
-	# 	filledTellTemplatesList.append(tell_templateproperties)
-
-def fillFullTemplate(filledKillTemplatesList):
+def fillFullTemplate():
 	for template in filledKillTemplatesList:
+		print(template.templateName)
+		print(template.sentence)
+		print(template.filledTemplate)
+	for template in filledTellTemplatesList:
 		print(template.templateName)
 		print(template.sentence)
 		print(template.filledTemplate)
 
 def getSentence():
-	filledKillTemplatesList = []
 	with codecs.open("corpus.txt", 'r', encoding='utf-8', errors='ignore') as file:
 		text = file.read()
 	# text = "The temblor that struck northern Armenia on December 7, 1988, killed more than 25,000 people, injured up to 130,000, and left hundreds of thousands homeless or without basic supplies."
 	sentences=sentenceTokenizer(text)
-	with codecs.open("selectedsentences.txt",'w',encoding='utf-8',errors='ignore') as fi:
-		for sentence in sentences:
-			# tokenizedWords=wordTokenizer(sentence)
-			# sentenceWordset = set(tokenizedWords)
-			posTaggedwords = wordPosTagger(sentence)
-			allVerbsTag=set(filter(lambda y: "VBG" in  y or "VB" in  y or "VBD" in  y or "VBN" in  y or "VBP" in  y or "VBZ" in  y,posTaggedwords))
-			allVerbs=list(map(lambda y: y[0],allVerbsTag))
-			sentenceWordset=set(verbLemmatizer(allVerbs))
-			for word in wordRelDict:
-				intersectionSet = sentenceWordset.intersection(wordRelDict[word])
-				if len(intersectionSet) > 0:
-					fillTemplateProperties(word, sentence, intersectionSet, filledKillTemplatesList)
-					# print("\ntemplate : ",word," sentence: ",sentence, "intersectedSet: ",intersectionSet)
-					# fi.write("\n\ntemplate : "+word+" sentence: "+sentence+ "intersectedSet: "+str(intersectionSet))
-	fi.close()
+	for sentence in sentences:
+		# tokenizedWords=wordTokenizer(sentence)
+		# sentenceWordset = set(tokenizedWords)
+		posTaggedwords = wordPosTagger(sentence)
+		allVerbsTag=set(filter(lambda y: "VBG" in  y or "VB" in  y or "VBD" in  y or "VBN" in  y or "VBP" in  y or "VBZ" in  y,posTaggedwords))
+		allVerbs=list(map(lambda y: y[0],allVerbsTag))
+		sentenceWordset=set(verbLemmatizer(allVerbs))
+		for word in wordRelDict:
+			intersectionSet = sentenceWordset.intersection(wordRelDict[word])
+			if len(intersectionSet) > 0:
+				fillTemplateProperties(word, sentence, intersectionSet)
 	file.close()
-
-	# 			
-	fillFullTemplate(filledKillTemplatesList)
-	
+	fillFullTemplate()
 
 def getRelatedWordList():
 	wordDefDict = {'occur':'happen.v.01','damage':'damage.v.01','visit':'visit.v.01','evacuate':'evacuate.v.01','force':'force.v.04','injure':'injure.v.01','trigger':'trip.v.04','strike':'hit.v.05','warn':'warn.v.01','experience':'experience.v.01','kill':'kill.v.01','record':'record.v.01','tell':'tell.v.02'}
@@ -172,6 +248,9 @@ def getRelatedWordList():
 
 wordList=[]
 wordRelDict = {}
+filledKillTemplatesList = []
+filledTellTemplatesList = []
+
 getRelatedWordList()
 getSentence()
 

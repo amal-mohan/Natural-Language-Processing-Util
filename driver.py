@@ -15,6 +15,7 @@ from relationExtractor import extractRelations
 print("Reading corpus")
 filePointer=codecs.open("corpus.txt",'r',encoding='utf-8',errors="ignore")
 text=filePointer.read()
+print("Fetched corpus successfully")
 
 def extractNLPFeatures():
 	#Tokenize the corpus into words

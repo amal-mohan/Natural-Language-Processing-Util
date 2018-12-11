@@ -1,7 +1,14 @@
+# # -*- coding: utf-8 -*-
+# """
+# Created on Sat Dec 01 13:27:52 2018
+
+# @author: amal, nayana
+# """
+
 import spacy
 from spacy import displacy
 nlp = spacy.load('en')
-
+import codecs
 def dependencyParse(text):
 	doc = nlp(text)
 	for token in doc:
@@ -13,3 +20,4 @@ def dependencyParse(text):
     #        'color': 'black', 'font': 'Source Sans Pro'}
 	displacy.serve(sentence_spans, style='dep', options=options)
 	# , jupyter=True, options={'distance': 90})
+

@@ -1,3 +1,10 @@
+# # -*- coding: utf-8 -*-
+# """
+# Created on Sat Dec 01 13:27:52 2018
+
+# @author: amal, nayana
+# """
+
 from nltk.corpus import wordnet as wn
 
 def extractRelations(wordList):
@@ -12,7 +19,11 @@ def extractRelations(wordList):
 			print("\t\tHyponymys:", hyponym)
 			hypernym = wn.synset(synset.name()).hypernyms()
 			print("\t\tHypernyms: ",hypernym)
-			holonym = wn.synset(synset.name()).part_holonyms() 
-			print("\t\tHolonyms: ",holonym)
-			meronym = wn.synset(synset.name()).part_meronyms()
-			print("\t\tMeronyms: ",meronym)
+			holonym_part = wn.synset(synset.name()).part_holonyms() 
+			print("\t\tHolonyms_part: ",holonym_part)
+			holonym_subst=wn.synset(synset.name()).substance_holonyms() 
+			print("\t\tHolonyms_substance: ",holonym_subst)
+			meronym_part = wn.synset(synset.name()).part_meronyms()
+			print("\t\tMeronyms_part: ",meronym_part)
+			meronym_subst=wn.synset(synset.name()).substance_meronyms() 
+			print("\t\tMeronyms_substance: ",meronym_subst)

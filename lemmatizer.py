@@ -23,13 +23,10 @@ def get_wordnet_pos(word):
 
 def wordLemmatizer(wordList):
     lemmatizer=WordNetLemmatizer()
-    #print(wordList)
     lemmatized_output = [lemmatizer.lemmatize(word, get_wordnet_pos(word)) for word in wordList]
-#    print(lemmatized_output)
     return lemmatized_output
 
 def verbLemmatizer(wordList):
     lemmatizer=WordNetLemmatizer()
     lemmatized_output = [lemmatizer.lemmatize(word, 'v') for word in wordList]
-#    print(lemmatized_output)
     return lemmatized_output
